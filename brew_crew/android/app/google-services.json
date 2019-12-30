@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "730807410247",
+    "firebase_url": "https://david-brew-crew-d1183.firebaseio.com",
+    "project_id": "david-brew-crew-d1183",
+    "storage_bucket": "david-brew-crew-d1183.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730807410247:android:d6d9336d77000d6f56db62",
+        "android_client_info": {
+          "package_name": "com.davidlagrange.brew_crew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "730807410247-h4fbpi4gs7qk9khdtujru49qeiddntda.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoTuH7rENiAUP2VDfMo04Y5hwfSWWd8aU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "730807410247-h4fbpi4gs7qk9khdtujru49qeiddntda.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
