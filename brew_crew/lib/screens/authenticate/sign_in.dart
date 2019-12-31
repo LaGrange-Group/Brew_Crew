@@ -1,7 +1,8 @@
-import 'package:brew_crew/models/user.dart';
-import 'package:brew_crew/services/auth.dart';
-import 'package:flutter/material.dart';
 
+import 'package:brew_crew/services/auth.dart';
+import 'package:brew_crew/shared/loading.dart';
+import 'package:flutter/material.dart';
+import 'package:brew_crew/shared/constants.dart';
 class SignIn extends StatefulWidget {
 
   final Function toggleView;
@@ -16,6 +17,7 @@ class _State extends State<SignIn> {
 
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   String email = '';
   String password = '';
@@ -23,7 +25,7 @@ class _State extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
@@ -45,6 +47,7 @@ class _State extends State<SignIn> {
             children: <Widget>[
               SizedBox(height: 20),
               TextFormField(
+                decoration: textInputDecoration.copyWith(hintText: 'Email'),
                 validator: (val) => val.isEmpty ? 'Enter an email' : null,
                 onChanged: (val) {
                   setState(() => email = val);
@@ -52,6 +55,7 @@ class _State extends State<SignIn> {
               ),
               SizedBox(height: 20),
               TextFormField(
+                decoration: textInputDecoration.copyWith(hintText: 'Password'),
                 validator: (val) => val.length < 6 ? 'Enter a password 6+ chars long' : null,
                 obscureText: true,
                 onChanged: (val) {
@@ -69,9 +73,13 @@ class _State extends State<SignIn> {
                 ),
                 onPressed: () async {
                   if (_formKey.currentState.validate()){
+                      setState(() => loading = true);
                       dynamic result = await _auth.signInWithEmailAndPassword(email, password);
                     if (result == null){
-                      setState(() => error = 'Could not sign in with provided credentials');
+                      setState(() {
+                        error = 'Could not sign in with provided credentials';
+                        loading = false;
+                      });
                     }
                   }
                 },
